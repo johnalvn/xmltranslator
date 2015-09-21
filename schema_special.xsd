@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!-- Type definitions -->
+  <xs:simpleType name="alphanumerictype">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9A-Za-z-]*" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="numerictype">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]*" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="pricetype">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(\d+\.?\d){1,8}" />
+    </xs:restriction>
+  </xs:simpleType>
+<!--   <xs:simpleType name="taxonomytype">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[\s\S]*[A-Za-zÁÉÍÓÚÑÜáéíóúñü, ]+[|/]{1}[A-Za-zÁÉÍÓÚÑÜáéíóúñü, ]+[|/]{1}[A-Za-zÁÉÍÓÚÑÜáéíóúñü, ]+[\s\S]*" />
+    </xs:restriction>
+  </xs:simpleType> -->
+  <!-- Simple elements definition -->
+  <!-- Complex elements definition -->
+  <xs:element name="Item">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="id-comercio" type="xs:string" minOccurs="1" maxOccurs="1" />
+        <xs:element name="marca" type="xs:string" minOccurs="1" maxOccurs="1" />
+        <xs:element name="titulo" type="xs:string" minOccurs="1" maxOccurs="1" />
+        <xs:element name="url" type="xs:anyURI" minOccurs="1" maxOccurs="1" />
+        <xs:element name="taxonomia" type="xs:string" minOccurs="1" maxOccurs="1" />
+        <xs:element name="url-imagen" type="xs:anyURI" minOccurs="1" maxOccurs="1" />
+        <xs:element name="precio" type="pricetype" minOccurs="1" maxOccurs="1" />
+        <xs:element name="precio-promocion" type="pricetype"/>
+        <xs:element name="porcentaje-promocion"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Allitems">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Item" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
